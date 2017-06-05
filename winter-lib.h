@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 /* Docker function. 1 - instalation 2-run*/
 char docker(int a, char b[60], char c[60]){

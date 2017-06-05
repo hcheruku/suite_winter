@@ -3,7 +3,7 @@
 #include <string.h>
 
 /* Docker function. 1 - instalation 2-run*/
-char docker(int a, char b[60], char c[60]){
+char docker(short a, char b[60], char c[60]){
 	printf("\n \t Docker initialization \n");
 	if (a = (1 + 0)){
 		printf("Building dockerfile, please wait....\n");

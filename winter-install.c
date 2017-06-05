@@ -12,7 +12,9 @@ int main (){
   if (a = "1"){
   printf("\n Please type the dockerfile to install: " );
   scanf("%s", &c)
-  docker(1, b, c); }
+  strcat(b, c);
+  system(b);
+  docker(1, c); }
   else {
     docker(2);
   }

@@ -5,7 +5,7 @@
 /* Docker function. 1 - instalation 2-run*/
 char docker(int a, char b[60], char c[60]){
 	printf("\n \t Docker initialization \n");
-	if (a = (a - 0)){
+	if (a = (1 + 0)){
 		printf("Building dockerfile, please wait....\n");
 		char c[60];
 		strcpy(c, "docker build -t ");
@@ -14,7 +14,7 @@ char docker(int a, char b[60], char c[60]){
 		system(c);
 		printf(" Dockerfile installed. If you wish list your images please type: 'docker images' \n");
 	}
-	else if (a = (a -0))
+	else if (a = (2 + 0))
 	{
 		printf("\n \t Listening docker images: \n");
 		system("docker images");

@@ -1,3 +1,5 @@
+/* This tool was programed by Joaquin Manuel Crespo (aka Shyan) and are under the GPLv3 */
+
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>

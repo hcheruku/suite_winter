@@ -1,5 +1,5 @@
 # Estandar
-Este archivo describe las reglas y forma de programar mia (Joaquin Manuel Crespo) para todos mis programas.
+Este archivo describe las reglas y forma de programar mia (Joaquin Manuel Crespo) para todos mis programas escritos en C.
 
 ## Requerimientos 
 * La compilación con gcc debe llevar sus argumentos: -Wall -Werror para que muestre todos los warnings dentro del programa

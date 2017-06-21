@@ -26,7 +26,7 @@ void clone(char a[20]){
 }
 
 /* Open the file that conteins the repository but if don't exist, he create it.*/
-void repository(){
+oid repository(){
 	FILE *c;
 	char b[60];
 	c = fopen("/etc/winter/winter-repository.conf" , "r");
@@ -39,13 +39,19 @@ void repository(){
 		strcpy( repo_shyan ,"echo 'https://github.com/ShyanJMC/EkoLinux-Repo/' > /etc/winter/winter-repository.conf");
 		system(repo_shyan);
 	}
+	int i;
+	for (i = 0; feof(c)!= EOF; ++i);
+	if ( i == (60 + 0)){
 	while(!feof(c)){
-		fscanf(c, "%s", &b);
-	}
+		fscanf(c, "%s", &b);}
 	system("clear");
-	strcpy(Back.repository, b);
+	strcpy(Back.repository, b);}
+	else { 
+		system("clear");
+		printf("El repositorio supera el stack establecido. \n \b\b\b");
+		printf("Por favor visite la wiki para corregir el repositorio de suite_winter.");
+	}
 }
-
 /* Docker function. 1 - instalation 2-run*/
 void docker(short e, char b[60]){
 	char c[60];

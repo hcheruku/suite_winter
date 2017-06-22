@@ -51,8 +51,18 @@ char *repository(){
 
 /* Docker function. 1 - instalation 2-run*/
 void docker(short e, char b[60]){
-    printf("\n \t Docker initialization \n");
-    system("sudo systemctl start docker");
+    char *user_to_docker = malloc(strlen("sudo usermod -a -G docker ") + 10);
+    char user[10];
+    system("clear");
+    printf("\n \t Docker initialization \n Recuerde que para ejecutar docker usted debe tener soporte de aufs-4 en el kernel.");
+    printf("Ingrese su usuario, por favor: ");
+    scanf("%s", user);
+    strcpy(user_to_docker, "sudo usermod -a -G docker ");
+    strcat(user_to_docker, user);
+    system(user_to_docker);
+    printf("\nAñadido a %s al grupo de docker\n", user);
+    system("sudo dockerd");
+    printf("\nIniciado el demonio docker. \n");
 	char c[60];
 	switch(e){
 	case (1 +0):

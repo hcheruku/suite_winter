@@ -51,22 +51,25 @@ char *repository(){
 
 /* Docker function. 1 - instalation 2-run*/
 void docker(short e, char b[60]){
+    printf("\n \t Docker initialization \n");
+    system("sudo systemctl start docker");
 	char c[60];
-	printf("\n \t Docker initialization \n");
-	if (e == (1 + 0)){
-		Back.docker_function = 1;
+	switch(e){
+	case (1 +0):
+	    Back.docker_function = 1;
 		printf("Building dockerfile, please wait....\n");
 		strcpy(c, "docker build -t ");
 		strcat(c, b);
 		strcat(c, " .");
 		system(c);
 		printf(" \n Dockerfile installed. If you wish list your images please type: 'docker images' \n");
-	}
-	else if (e == (2 + 0))
-	{
-		Back.docker_function = 2;
+		break;
+    case (2 + 0):
+        Back.docker_function = 2;
 		printf("\n \t Listening docker images: \n");
 		system("docker images");
 		printf("\n \n If you wanna start some of that please type; 'docker run -i -t [IMAGE ID] /bin/bash' \n");
+		break;
 	}
+
 }

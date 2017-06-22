@@ -19,6 +19,7 @@ int main (){
   pthread_create(&hilo_repositorio, NULL, (void *)repository, NULL);
   pthread_join(hilo_repositorio, (void *) &d);
   printf("\n \n Se esta usando el repositorio: %s \n", Back.repository);
+  system("sleep 2");
   strcpy(b, Back.repository);
   switch(a){
     case 1: {

@@ -54,7 +54,7 @@ void docker(short e, char b[60]){
     char *user_to_docker = malloc(strlen("sudo usermod -a -G docker ") + 10);
     char user[10];
     system("clear");
-    printf("\n \t Docker initialization \n Recuerde que para ejecutar docker usted debe tener soporte de aufs-4 en el kernel.");
+    printf("\n \t Docker initialization \nRecuerde que para ejecutar docker usted debe tener soporte de aufs-4 en el kernel.\n");
     printf("Ingrese su usuario, por favor: ");
     scanf("%s", user);
     strcpy(user_to_docker, "sudo usermod -a -G docker ");

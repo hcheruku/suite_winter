@@ -32,8 +32,6 @@ void clone(char a[10]){
 	system(b);
 }
 
-/* Open the file that conteins the repository but if don't exist, he create it.*/
-/* When read the file that conteins the repository he test if the file can be inside the var.*/
 char *repository(){
 	int eleccion;
 	char *b = malloc(strlen("https://github.com/ShyanJMC/EkoLinux-repo"));

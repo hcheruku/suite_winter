@@ -45,7 +45,8 @@ int check_user(){
 }
 
 /* In future versiones I will atach support for RAW sockets.*/
-int socket_client(char protocol[3], const char ip[15] ){
+
+int socket_client(char protocol, const char ip[15] ){
         /* Struct for sockets and their bridge vars*/
         struct sockaddr *sock_bridge;
         struct addrinfo *hints;
@@ -56,20 +57,20 @@ int socket_client(char protocol[3], const char ip[15] ){
         printf("Insert port: ");
         scanf("%s", port);
         getaddrinfo(ip, port, hints, res);
-        if (protocol = "UDP"){ a = socket(PF_INET, SOCK_DGRAM, 0); }
+        if (protocol == 'U'){ a = socket(PF_INET, SOCK_DGRAM, 0); }
         else { a = socket(PF_INET, SOCK_STREAM, 0); }
-        if (a = -1) { printf("Error in socket"); return 1; }
+        if (a == -1) { printf("Error in socket"); return 1; }
         printf("Please insert the messege to send to target: \n");
         scanf("%s", buffer);
         printf("Connecting to target and sending messege\n");
         connect(a, sock_bridge, 15);
-        if (a = -1){ 
-                        printf("Error in socket\n"); 
+        if (a == -1){
+                    	printf("Error in socket\n");
                         return 1;}
         msg_len = strlen(buffer);
         send_file = send(a, buffer, msg_len, 0);
-        if (send_file = -1){ 
-                        printf("error in sending \n"); 
+        if (send_file == -1){
+                        printf("error in sending \n");
                         return 1; }
         printf("Waiting answer ...\n");
         recv_file = recv(a, buffer, 7000, 0);
@@ -85,6 +86,7 @@ int socket_client(char protocol[3], const char ip[15] ){
                         break;}
         return 0;
         pthread_exit(NULL); }
+
 
 /* Clone the package "a" from the repository in the struct.*/
 void clone(char a[10]){

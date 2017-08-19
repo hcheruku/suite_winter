@@ -7,4 +7,4 @@ This tools are licensed in GPL 3.
 
 * Ivan Oudkerk: winter-search (Python)
 
-* Me (Joaquin Manuel Crespo, aka "ShyanJMC"): winter-install / winter-lib & winter-guardian (C)
+* Me (Joaquin Manuel Crespo, aka "ShyanJMC"): winter-install, winter-lib, winter-terminal & winter-guardian (C)

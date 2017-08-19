@@ -17,10 +17,7 @@
 #include <arpa/inet.h>
 #include <netdb.h>
 
-/* Struct for sockets and their bridge vars*/
-struct sockaddr *sock_bridge;
-
-/* Alias/
+/* Alias */
 #define UDP SOCK_DGRAM
 #define TCP SOCK_STREAM
 
@@ -43,50 +40,47 @@ struct Cache
 }cache;
 
 char check_user(){ 
-	if (geteuid() = 0 ) { printf("Using root privilegies");return (cache.is_root = 0); }
+	if (geteuid() ) { printf("Using root privilegies");return (cache.is_root = 0); }
 	return (cache.is_root = 1);
 }
 
 /* In future versiones I will atach support for RAW sockets.*/
-int socket-client(int type, char protocol[3], char ip[15], int port){
-        getaddrinfo(ip, port, const struct addinfo *hints, struct addrinfo **res);
-        int a; 
-        char *messege;
-        char buffer[7000];
-        a = socket(PF_INET, protocol, 0);
+int socket_client(char protocol[3], const char ip[15] ){
+        /* Struct for sockets and their bridge vars*/
+        struct sockaddr *sock_bridge;
+        struct addrinfo *hints;
+        struct addrinfo **res;
+        int a, send_file, recv_file, msg_len;
+        char buffer[7000], port[2];
+        printf("Socket function initializated \n");
+        printf("Insert port: ");
+        scanf("%s", port);
+        getaddrinfo(ip, port, hints, res);
+        if (protocol = "UDP"){ a = socket(PF_INET, SOCK_DGRAM, 0); }
+        else { a = socket(PF_INET, SOCK_STREAM, 0); }
         if (a = -1) { printf("Error in socket"); return 1; }
-        printf("Opened socket in Ipv4 with protocol; %s", protocol);
-        strcpy(cache.socket_file_descriptor, a);
-	strcpy(cache.socket_protocol, protocol);
         printf("Please insert the messege to send to target: \n");
         scanf("%s", buffer);
-        messege = malloc(strlen(buffer));
-        strcpy(messege, buffer);
-        buffer= 0;
         printf("Connecting to target and sending messege\n");
-        connect("a, sock_bridge.ai_addr, sock_bridge.ai_addrlen);
+        connect(a, sock_bridge, 15);
         if (a = -1){ printf("Error in socket\n");
-        int send_file;
-        int msg-len = strlen(messege);
-        send_file = send(a, *messege, msg-len, 0);
+        msg_len = strlen(buffer);
+        send_file = send(a, buffer, msg_len, 0);
         if (send_file = -1){ printf("error in sending \n"); return 1;}
         printf("Waiting answer ...\n");
-        int recv_file;
         recv_file = recv(a, buffer, 7000, 0);
         switch(recv_file){
-                case(-1+0): 
-			printf("Error in recv \n"); 
-			break;
-                case(0+0): 
-			printf("The target close the conecttion \n"); 
-			break;
-                default: 
-			printf("%s \n", buffer); 
-			break;
-	}
-	return 0;
-        pthread_exit(NULL);
-}
+                case(-1+0):
+                        printf("Error in recv \n");
+                        break;
+                case(0+0):
+                        printf("The target close the conecttion \n");
+                        break;
+                default:
+                        printf("%s \n", buffer);
+                        break;}
+        return 0;
+        pthread_exit(NULL); }
 
 /* Clone the package "a" from the repository in the struct.*/
 void clone(char a[10]){

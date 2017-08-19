@@ -8,3 +8,9 @@ This tools are licensed in GPL 3.
 * Ivan Oudkerk: winter-search (Python)
 
 * Me (Joaquin Manuel Crespo, aka "ShyanJMC"): winter-install, winter-lib, winter-terminal & winter-guardian (C)
+
+
+## Development
+* All compilations are using:
+
+gcc -Wall -Werror

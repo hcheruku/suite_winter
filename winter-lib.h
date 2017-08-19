@@ -74,9 +74,16 @@ int socket-client(int type, char protocol[3], char ip[15], int port){
         int recv_file;
         recv_file = recv(a, buffer, 7000, 0);
         switch(recv_file){
-                case(-1+0): printf("Error in recv \n");
-                case(0+0): printf("The target close the conecttion \n");
-                default: printf("%s \n", buffer); }
+                case(-1+0): 
+			printf("Error in recv \n"); 
+			break;
+                case(0+0): 
+			printf("The target close the conecttion \n"); 
+			break;
+                default: 
+			printf("%s \n", buffer); 
+			break;
+	}
 	return 0;
         pthread_exit(NULL);
 }

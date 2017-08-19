@@ -63,10 +63,14 @@ int socket_client(char protocol[3], const char ip[15] ){
         scanf("%s", buffer);
         printf("Connecting to target and sending messege\n");
         connect(a, sock_bridge, 15);
-        if (a = -1){ printf("Error in socket\n");
+        if (a = -1){ 
+                        printf("Error in socket\n"); 
+                        return 1;}
         msg_len = strlen(buffer);
         send_file = send(a, buffer, msg_len, 0);
-        if (send_file = -1){ printf("error in sending \n"); return 1;}
+        if (send_file = -1){ 
+                        printf("error in sending \n"); 
+                        return 1; }
         printf("Waiting answer ...\n");
         recv_file = recv(a, buffer, 7000, 0);
         switch(recv_file){

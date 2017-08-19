@@ -1,6 +1,6 @@
 #include <pthread.h> /* hilos y multiprocesamiento */
 #include <stdio.h> /* standar */
-#include <stdlib.h> /* for system */
+/*#include <stdlib.h>*/ /* for system */
 #include "winter-lib.h" /*for all functions */
 
 
@@ -15,13 +15,18 @@
 int loop(){
 	char *command;
         while (1 != 0){
+       	command = malloc(300);
+       	if (command == NULL){ return 1;}
         printf(ANSI_COLOR_GREEN "> " ANSI_COLOR_RESET);
-        scanf("%s", command);
-        if(command[0] =='-'){
-             command[0] = ' ';
-             system(command);}
-         /* winter-interpreter(command); */}
-        }
+        fgets(command, 300, stdin);
+       	switch(command[0]){
+       	case ('-'): {command[0] = ' '; system(command); break;}
+       	case ('_'): {return 0; break;}}
+        /* winter-interpreter(command); */ 
+       	free(command);} 
+}
+
+
 
 
 int main(){

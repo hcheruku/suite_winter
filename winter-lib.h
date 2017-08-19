@@ -39,7 +39,7 @@ struct Cache
 	int is_root; /* 0 for yes, 1 for no */
 }cache;
 
-char check_user(){ 
+int check_user(){ 
 	if (geteuid() ) { printf("Using root privilegies");return (cache.is_root = 0); }
 	return (cache.is_root = 1);
 }

@@ -68,7 +68,7 @@ int socket-client(int type, char protocol[3], char ip[15], int port){
         if (a = -1){ printf("Error in socket\n");
         int send_file;
         int msg-len = strlen(messege);
-        send_file = send(a, *messege, msg-len, 0)
+        send_file = send(a, *messege, msg-len, 0);
         if (send_file = -1){ printf("error in sending \n"); return 1;}
         printf("Waiting answer ...\n");
         int recv_file;

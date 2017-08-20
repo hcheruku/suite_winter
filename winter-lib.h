@@ -147,3 +147,27 @@ void docker(short e, char b[60]){
 	}
 
 }
+
+/* Winter Interpreter */
+int winter_interpreter(char comando[300]){
+        int temporal1;
+        char temporal2[60];
+        if ((strcmp( comando, "wdocker"))== 0){
+                        printf("\n 1-Install 2-Run images");
+                       	scanf("%d", &temporal1);
+                        printf("\n Insert the name of dockerfile to install");
+                        fgets(temporal2, 60, stdin);
+                        docker(temporal1, temporal2);
+                        return 0; }
+        else if((strcmp( comando, "wrepo"))== 0){
+                        repository();
+                       	return 0; }
+        else if((strcmp( comando, "wcheck")) == 0){
+                       	check_user();
+                        return 0; }
+        else if((strcmp( comando, "weko")) == 0){
+                        repository();
+                        return 0; }
+        else {printf("Winter command not recognized \n");return 0;}
+        /*pthread_exit(NULL);*/
+}

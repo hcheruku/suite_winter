@@ -1,0 +1,6 @@
+#### Winter Search ####
+
+How To Install:
+
+	1) tar xvf wintersearch.tar -C / && chmod 555 /usr/bin/winter-search.py 
+	2) pip install -r requirements.txt

@@ -22,10 +22,13 @@ void help(){
 	printf(ANSI_COLOR_CYAN "1 - Socket function in client mode\n" ANSI_COLOR_RESET);
 	printf(ANSI_COLOR_CYAN "2 - Exiftool. Metadata analyzer\n" ANSI_COLOR_RESET);
         printf(ANSI_COLOR_CYAN "3 - Photorec. The best data rescure\n" ANSI_COLOR_RESET);
-        printf(ANSI_COLOR_CYAN "4 - Shutdown system\n" ANSI_COLOR_RESET);
-        printf(ANSI_COLOR_CYAN "5 - Reboot system\n" ANSI_COLOR_RESET);
-
-
+        printf(ANSI_COLOR_CYAN "4 - List Android devices with adb\n" ANSI_COLOR_RESET);
+        printf(ANSI_COLOR_CYAN "5 - Install an APK throught adb\n" ANSI_COLOR_RESET);
+        printf(ANSI_COLOR_CYAN "6 - Copy file from Android to PC Host\n" ANSI_COLOR_RESET);
+        printf(ANSI_COLOR_CYAN "7 - Copy file from Host to Android device\n" ANSI_COLOR_RESET);
+        printf(ANSI_COLOR_CYAN "8 - Uninstall an APK\n" ANSI_COLOR_RESET);
+        printf(ANSI_COLOR_CYAN "s - Shutdown system\n" ANSI_COLOR_RESET);
+        printf(ANSI_COLOR_CYAN "r - Reboot system\n" ANSI_COLOR_RESET);
 
 }
 int loop(){
@@ -54,9 +57,50 @@ int loop(){
 		photorec(dev);
 		break;}
 	case ('4'): {
-		system("sudo shutdown -t 0");
+		adb_listen();
 		break;}
 	case ('5'): {
+		char path[100], device[30];
+		printf("Insert the path of the apk: ");
+		fgets(path, 100, stdin);
+		printf("What is the name of the device?: ");
+		fgets(device, 30, stdin);
+		adb_install(device, path);
+		break;}
+	case ('6'): {
+		char device[30], file_android[100], file_host[100];
+                printf("What is the name of the device?: ");
+               	fgets(device, 30, stdin);
+		printf("Insert the path of file in the Android: ");
+		fgets(file_android, 100, stdin);
+		strcat(file_android, " ");
+		printf("Insert the path where the file will be saved: ");
+		fgets(file_host, 100, stdin);
+		adb_copy_to_local(device, file_android, file_host);
+		break;}
+	case ('7'): {
+		char device[30], file_android[100], file_host[100];
+                printf("What is the name of the device?: ");
+                fgets(device, 30, stdin);
+               	printf("Insert the path where the file will be in the Android: ");
+               	fgets(file_android, 100, stdin);
+               	printf("Insert the path of the fail: ");
+               	fgets(file_host, 100, stdin);
+                strcat(file_host, " ");
+               	adb_copy_to_device(device, file_android, file_host);
+               	break;}
+       	case ('8'): {
+               	char apk[100], device[30];
+                printf("Insert the full name of the apk: ");
+               	fgets(apk, 100, stdin);
+                printf("What is the name of the device?: ");
+               	fgets(device, 30, stdin);
+               	adb_remove(device, apk);
+               	break;}
+	case ('s'): {
+		system("sudo shutdown -t 0");
+		break;}
+	case ('r'): {
 		system("sudo shutdown -r -t 0");
 		break;}
 	case ('h'): { help(); break;}

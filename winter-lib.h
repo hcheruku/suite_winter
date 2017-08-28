@@ -33,13 +33,71 @@ struct Cache
         char *winter_repository_conf[35];
 	int is_root; /* 0 for yes, 1 for no */
 	char directory_image[300];
-	short test_disk;
-	short photorec;
+	short photorec; /* For data rescure */
+	short adb_listen; /*Android Debug Bridge*/
+	short adb_install; /* "" */
+	short adb_uninstall; /* "" */
+	short adb_copy_to_local; /* "" */
+	short adb_copy_to_device; /* "" */
+	short systrace; /* For analyze the performance of an app in Android Device */
+	char android_device[30]; /* As the name say, the name of the android device */
 }cache;
+
+int adb_listen(){
+	cache.adb_listen = 1;
+	char temporal1[60];
+	printf("----\nAndroid Debug Bridge initializated\n");
+	char adb[60] = "sudo ./android-platform-tools/adb";
+	printf("Listing Android devices detected\n");
+	strcpy(temporal1, adb);
+	strcat(temporal1, " devices -l");
+	system(temporal1);
+	return 0;}
+
+int adb_install(char device[30], char apk[100]){
+	cache.adb_install = 1;
+	char temporal1[100] = "sudo ./android-platform-tools/adb -s";
+	printf("----\nAndroid install apk to device tool\n");
+	strcat (temporal1, device);
+	strcat (temporal1, " install ");
+	strcat (temporal1, apk);
+	system(temporal1);
+	return 0;}
+
+int adb_remove(char device[30], char apk[100]){
+        cache.adb_uninstall = 1;
+        char temporal1[100] = "sudo ./android-platform-tools/adb -s";
+        printf("----\nAndroid uninstall apk from device\n");
+        strcat (temporal1, device);
+        strcat (temporal1, " uninstall ");
+        strcat (temporal1, apk);
+        system(temporal1);
+        return 0;}
+
+int adb_copy_to_local(char device[30], char file_android[100], char file_host[100]){
+	cache.adb_copy_to_local = 1;
+        char temporal1[200] = "sudo ./android-platform-tools/adb -s ";
+	strcat(temporal1, device);
+	strcat(temporal1, " pull ");
+	strcat(temporal1, file_android);
+	strcat(temporal1, file_host);
+	system(temporal1);
+	return 0;}
+
+int adb_copy_to_device(char device[30], char file_android[100], char file_host[100]){
+       	cache.adb_copy_to_device = 1;
+        char temporal1[200] = "sudo ./android-platform-tools/adb -s ";
+       	strcat(temporal1, device);
+       	strcat(temporal1, " push ");
+        strcat(temporal1, file_host);
+       	strcat(temporal1, file_android);
+       	system(temporal1);
+       	return 0;}
+
 
 int photorec(char dev[9]){
 	cache.photorec = 1;
-	printf("----\nPhotorec function inicializated\nDisk to rescure data;%s", dev);
+	printf("----\nPhotorec function initializated\nDisk to rescure data;%s", dev);
 	char photorec_and_disk[44] = "sudo ./testdisk/photorec_static ";
 	strcat(photorec_and_disk, dev);
 	system(photorec_and_disk);

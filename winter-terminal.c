@@ -29,6 +29,7 @@ void help(){
         printf(ANSI_COLOR_CYAN "8 - Uninstall an APK\n" ANSI_COLOR_RESET);
         printf(ANSI_COLOR_CYAN "s - Shutdown system\n" ANSI_COLOR_RESET);
         printf(ANSI_COLOR_CYAN "r - Reboot system\n" ANSI_COLOR_RESET);
+        printf(ANSI_COLOR_CYAN "< - Exit of Winter-terminal\n" ANSI_COLOR_RESET);
 
 }
 int loop(){
@@ -113,7 +114,7 @@ int loop(){
 
 int main(){
 	system("clear");
-	printf(ANSI_COLOR_CYAN " Winter Terminal.\n Version: 0.63.2 BETA\n GPLv3.\n\n\n" ANSI_COLOR_RESET);
+	printf(ANSI_COLOR_CYAN " Winter Terminal.- Writen by Joaquin Crespo (ShyanJMC)\n Version: 0.63.2 BETA\n GPLv3.\n\n\n" ANSI_COLOR_RESET);
 	system("date");
 	help();
 	loop();

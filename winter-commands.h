@@ -27,20 +27,17 @@ void help(){
         printf(ANSI_COLOR_CYAN "6 - Copy file from Android to PC Host\n" ANSI_COLOR_RESET);
         printf(ANSI_COLOR_CYAN "7 - Copy file from Host to Android device\n" ANSI_COLOR_RESET);
         printf(ANSI_COLOR_CYAN "8 - Uninstall an APK\n" ANSI_COLOR_RESET);
-        printf(ANSI_COLOR_CYAN "9 - Full backup of Android device\n" ANSI_COLOR_RESET);
-        printf(ANSI_COLOR_CYAN "s - Android shell\n" ANSI_COLOR_RESET);
-
-        printf(ANSI_COLOR_CYAN "e - Exit the system and shutdown \n" ANSI_COLOR_RESET);
+        printf(ANSI_COLOR_CYAN "s - Shutdown system\n" ANSI_COLOR_RESET);
         printf(ANSI_COLOR_CYAN "r - Reboot system\n" ANSI_COLOR_RESET);
         printf(ANSI_COLOR_CYAN "< - Exit of Winter-terminal\n" ANSI_COLOR_RESET);
 
-	printf("\nIf you want the full support and commands of the shell Android visit: developer.android.com/studio/command-line/adb.html\n");
 }
 int loop(){
 	char comand[300];
 	while (1 != 0){
 	printf(ANSI_COLOR_GREEN "> " ANSI_COLOR_RESET);
         fgets(comand, 60, stdin);
+	int c= strlen(comand);
 	switch(comand[0]){
 	case ('0'): {
 		check_user();
@@ -67,13 +64,13 @@ int loop(){
 		char path[100], device[30];
 		printf("Insert the path of the apk: ");
 		fgets(path, 100, stdin);
-		printf("What is the serial of the device?: ");
+		printf("What is the name of the device?: ");
 		fgets(device, 30, stdin);
 		adb_install(device, path);
 		break;}
 	case ('6'): {
 		char device[30], file_android[100], file_host[100];
-                printf("What is the serial of the device?: ");
+                printf("What is the name of the device?: ");
                	fgets(device, 30, stdin);
 		printf("Insert the path of file in the Android: ");
 		fgets(file_android, 100, stdin);
@@ -84,7 +81,7 @@ int loop(){
 		break;}
 	case ('7'): {
 		char device[30], file_android[100], file_host[100];
-                printf("What is the serial of the device?: ");
+                printf("What is the name of the device?: ");
                 fgets(device, 30, stdin);
                	printf("Insert the path where the file will be in the Android: ");
                	fgets(file_android, 100, stdin);
@@ -97,42 +94,20 @@ int loop(){
                	char apk[100], device[30];
                 printf("Insert the full name of the apk: ");
                	fgets(apk, 100, stdin);
-                printf("What is the serial of the device?: ");
+                printf("What is the name of the device?: ");
                	fgets(device, 30, stdin);
                	adb_remove(device, apk);
                	break;}
-	case ('9'): {
-		char device[30];
-		printf("What is the serial of the device?: ");
-		fgets(device, 30, stdin);
-		adb_backup_function(device);
-		break;}
 	case ('s'): {
-		char device[30];
-		printf("What is the serial of the device?: ");
-		fgets(device, 30, stdin);
-		adb_shell(device);
-		break;}
-	case ('e'): {
-		system("sudo shutdown -h now");
+		system("sudo shutdown -t 0");
 		break;}
 	case ('r'): {
-		system("sudo shutdown -h now");
+		system("sudo shutdown -r -t 0");
 		break;}
 	case ('h'): { help(); break;}
 	case ('<'): {return 0; break;}
         default: {
 		system(comand);
 		break; }}}
-}
-
-
-int main(){
-	system("clear");
-	printf(ANSI_COLOR_CYAN " Winter Terminal.- Writen by Joaquin Crespo (ShyanJMC)\n Version: 0.64.2 BETA\n GPLv3.\n\n\n" ANSI_COLOR_RESET);
-	system("date");
-	help();
-	loop();
-	return 0;
 }
 

@@ -6,9 +6,9 @@ The winter suite are tools (in C and python) for automatizations, forensics, rev
 ![Winter Terminal v0.5 Beta](https://github.com/ShyanJMC/InviernoSOWeb/blob/master/img/Selection_001.png)
 ## Developers
 
-- @ioudkerk (Ivan Oudkerk): winter-search (Python)
+- @ioudkerk (Ivan Oudkerk): winter-search (builded in Python)
 
-- Me (Joaquin Manuel Crespo, aka "ShyanJMC"): winter-install, winter-lib, winter-terminal & winter-guardian (all in C)
+- Me (Joaquin Manuel Crespo, aka "ShyanJMC"): winter-install, winter-lib, winter-terminal & winter-guardian (all builded in C)
 
 
 ## Development

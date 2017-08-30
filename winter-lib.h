@@ -39,6 +39,8 @@ struct Cache
 	short adb_uninstall; /* "" */
 	short adb_copy_to_local; /* "" */
 	short adb_copy_to_device; /* "" */
+	short adb_backup; /* "" */
+	short adb_shell; /* "" */
 	short systrace; /* For analyze the performance of an app in Android Device */
 	char android_device[30]; /* As the name say, the name of the android device */
 }cache;
@@ -47,10 +49,10 @@ int adb_listen(){
 	cache.adb_listen = 1;
 	char temporal1[60];
 	printf("----\nAndroid Debug Bridge initializated\n");
-	char adb[60] = "sudo ./android-platform-tools/adb";
+	char adb[82] = "sudo ./android-platform-tools/adb";
 	printf("Listing Android devices detected\n");
 	strcpy(temporal1, adb);
-	strcat(temporal1, " devices -l");
+	strcat(temporal1, " get-state get-serialno get-devpath devices -l ");
 	system(temporal1);
 	return 0;}
 
@@ -94,10 +96,25 @@ int adb_copy_to_device(char device[30], char file_android[100], char file_host[1
        	system(temporal1);
        	return 0;}
 
+int adb_backup_function(char device[30]){
+	cache.adb_backup = 1;
+        char temporal1[180] = "sudo ./android-platform-tools/adb -s ";
+	strcat(temporal1, device);
+	strcat(temporal1, " backup -f backup_android -apk -obb -shared -system -all");
+	system(temporal1);
+	return 0;}
+
+int adb_shell(char device[30]){
+	cache.adb_shell = 1;
+        char temporal1[180] = "sudo ./android-platform-tools/adb shell -s ";
+	strcat(temporal1, device);
+	system(temporal1);
+	return 0;}
 
 int photorec(char dev[9]){
 	cache.photorec = 1;
 	printf("----\nPhotorec function initializated\nDisk to rescure data;%s", dev);
+	system("sleep 2");
 	char photorec_and_disk[44] = "sudo ./testdisk/photorec_static ";
 	strcat(photorec_and_disk, dev);
 	system(photorec_and_disk);
@@ -125,8 +142,8 @@ int check_user(){
 int socket_client(char protocol){
 	/* Struct for sockets and their bridge vars*/
 	struct addrinfo hints, *res;
-	int a, send_file, recv_file, msg_len, info;
-	char buffer[7000], direcc[30];
+	int a, send_file, recv_file, msg_len;
+	char buffer[7000];
 	printf("\nSocket function initializated \n");
 	hints.ai_family = AF_UNSPEC;
 	printf("IPv6 / IPv4 unspec\n");
